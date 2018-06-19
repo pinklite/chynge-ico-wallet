@@ -1,0 +1,37 @@
+<div class="keypair-result">
+  <p class="c-dark-blue fs-18"
+     style="margin: 0px;">Keypair Created</p>
+  <p class="fs-17 c-black">
+    <strong>
+      Keep your keys secure. This secret key will only be showed to you
+      <span class="c-orange">once</span>. Chynge will not save or keep your keys and will not be able to help recover it if lost.
+    </strong>
+  </p>
+
+  <div class="generated-key">
+    <div class="public-key">
+      <p class="fs-15 c-grey">Public Key
+        <span class="c-dark-blue">(this is your account ID)</span>
+      </p>
+      <p class="c-black fs-17"
+         style="margin-top: 0px">{{data.keypair.public}}</p>
+    </div>
+
+    <hr>
+
+    <div class="secret-key">
+      <p class="fs-15 c-grey">Secret Key
+        <span class="c-orange">(SAVE AND KEEP THIS SECURE)</span>
+      </p>
+      <p class="c-black fs-17"
+         style="margin-top: 0px">{{data.keypair.secret}}</p>
+    </div>
+  </div>
+
+  <div fxLayout="row"
+       fxLayoutAlign="start">
+    <button mat-button
+            mat-dialog-close
+            class="confirm-btn">I understand</button>
+  </div>
+</div>

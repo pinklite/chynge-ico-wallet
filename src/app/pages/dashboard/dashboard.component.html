@@ -1,0 +1,378 @@
+<div fxLayout="column"
+     fxLayoutAlign="start center"
+     class="bg">
+  <div class="container">
+    <div fxLayoutAlign="end center">
+      <button mat-button
+              (click)="onSignOut()"
+              ngClass="signOut-btn"
+              fxLayoutAlign="center center">
+        <mat-icon class="fs-18"
+                  ngClass.xs="fs-14">power_settings_new</mat-icon>
+        Sign Out
+      </button>
+    </div>
+
+    <div class="intro"
+         fxLayout="column"
+         fxLayoutAlign="center center">
+      <a href='/login'>
+        <img class="logo-img"
+             src="../../../assets/icons/blue-logo.png">
+      </a>
+      <p class="com-tag">Choose your preferred access</p>
+
+      <div fxLayout="row"
+           fxLayout.xs="column"
+           fxLayoutAlign="center center"
+           fxLayoutGap="15px"
+           class="button-row">
+        <button mat-button
+                (click)="loginYourKey = true; automatically = false"
+                [ngClass]="!loginYourKey ? 'nonActive-btn' : 'active-btn'">Login with your key</button>
+
+        <button mat-button
+                (click)="loginYourKey = false; automatically = true"
+                [ngClass]="!automatically ? 'nonActive-btn' : 'active-btn'">Automatically generate keypair</button>
+      </div>
+    </div>
+
+    <mat-card class="red-notes"
+              fxFlex="100"
+              *ngIf="loginYourKey === true">
+      <mat-card-content fxLayout="column">
+        <p class="c-red2 fs-18"
+           style="margin: 0; margin-bottom: 15px;">
+          Security Notes
+        </p>
+        <p class="fs-15 c-black"
+           style="line-height: 26px; margin: 0px;">
+          • Check the url to make sure you are on the correct website.
+        </p>
+        <p class="fs-15 c-black"
+           style="line-height: 26px; margin: 0px;">
+          • Chynge does not save your secret key. It is stored on your browser and will be deleted once your session ends i.e when
+          you close or refresh the browser.
+        </p>
+        <p class="fs-15 c-black"
+           style="line-height: 26px; margin: 0px;">
+          • For extra security, you can build from source or download from GitHub and verify the hash.
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="red-notes"
+              fxFlex="100"
+              *ngIf="automatically === true">
+      <mat-card-content fxLayout="column">
+        <p class="c-red2 fs-18"
+           style="margin: 0">
+          Account Generation Security Notes
+        </p>
+        <p class="fs-15 c-black"
+           style="line-height: 26px">
+          The key is generated usng entropy from TweetNaCl’s randomByte function, which in more browsers uses getRandomValues from
+          the Web Cryptography API. However, using a secure random number generation does not protect you from a compromised
+          computer. Take great care to make sure your computer is secure. Do not run this on a computer you do not trust.</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card id="automatically"
+              *ngIf="automatically === true">
+      <mat-card-content>
+        <p class="c-dark-blue fs-18"
+           style="margin-bottom: 5px">Generate Account Keypair</p>
+        <p class="fs-15 c-black">
+          To participate in the token sale, you will need a Stellar-compliant wallet. Chynge can generate a keypair for you, which
+          consists of two parts:
+        </p>
+        <p class="fs-15 c-black">
+          <span class="c-orange">• Public Key: </span>
+          The public key is used to identify the account and is used to receive funds .
+        </p>
+        <p class="fs-15 c-black">
+          <span class="c-orange">• Secret Key: </span>
+          The secret key is like a password. It is used to access your account and make transactions. Keep this safe and secure as
+          if you lose the key, you will not be able to access your funds and will not be able to recover your key. Contrary,
+          anyone with your secret key will have full access to the account and funds.
+        </p>
+        <p class="fs-15 c-black"> Before generating a keypair, make sure you have read and agreed on all terms stated below.</p>
+        <br/>
+
+        <div *ngIf='walletTrusted !== undefined'>
+          <div [formGroup]="keypairForm"
+               class="agreement">
+            <mat-checkbox formControlName="agreement1">
+              <span class="fs-15 c-black">I accept the Terms of Use and understand the risks associated with cryptocurrencies.</span>
+            </mat-checkbox>
+            <mat-checkbox formControlName="agreement2">
+              <span class="fs-15 c-black">I am aware that Chynge does not keep or store my keypair.</span>
+            </mat-checkbox>
+            <mat-checkbox formControlName="agreement3">
+              <span class="fs-15 c-black">I am aware that my wallet is merely an interface and is not a bank account.</span>
+            </mat-checkbox>
+            <mat-checkbox formControlName="agreement4">
+              <span class="fs-15 c-black">I acknowledge the importance of my private key and losing it means that no one, including Chynge, will be able
+                to retrieve it or my funds.</span>
+            </mat-checkbox>
+            <mat-checkbox formControlName="agreement5">
+              <span class="fs-15 c-black">I am responsible for my security, balance, public and secret key.</span>
+            </mat-checkbox>
+          </div>
+
+          <div style="margin-bottom: 10px; margin-top: 20px">
+            <button mat-button
+                    (click)="generateKeypair()"
+                    [disabled]="!keypairForm.valid || isloading || currentUser.receiving_wallet_address"
+                    [ngClass]="!currentUser.receiving_wallet_address ? 'active-btn confirm-btn ff-med' : 'disabled-btn confirm-btn ff-med'">Generate Keypair</button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card id="login-secretKey"
+              *ngIf="loginYourKey === true">
+      <mat-card-content>
+        <p class="c-dark-blue fs-18"
+           style="margin-bottom: 20px">Login with your secret key to manage your account</p>
+
+        <div *ngIf="walletTrusted === true">
+          <div class="public-key-block"
+               fxLayout="row">
+            <div class="public-key-block-left"
+                 fxLayoutAlign="center center">
+              <p class="fs-15 c-dark-grey"
+                 style="margin: 0;">Public Key</p>
+            </div>
+            <div class="public-key-block-right"
+                 fxLayoutAlign="center center">
+              <p class="fs-15 c-dark-grey"
+                 style="margin: 0;">{{keypair.public}}</p>
+            </div>
+          </div>
+          <div class="green-notes">
+            <p class="fs-15 ff-book"
+               style="margin: 0; color: #0C8F52;">Congratulations! A trustline has been created between your wallet and Chynge. You are ready to participate in
+              the Chynge ICO token sale.</p>
+          </div>
+        </div>
+
+        <div *ngIf="walletTrusted === false">
+          <div *ngIf="currentUser.receiving_wallet_address || loggedIn"
+               class="public-key-block"
+               fxLayout="row">
+            <div class="public-key-block-left"
+                 fxLayoutAlign="center center">
+              <p class="fs-15 c-dark-grey"
+                 style="margin: 0;">Public Key</p>
+            </div>
+            <div class="public-key-block-right"
+                 fxLayoutAlign="center center">
+              <p class="fs-15 c-dark-grey"
+                 style="margin: 0;">{{keypair.public}}</p>
+            </div>
+          </div>
+
+          <div *ngIf="currentUser.receiving_wallet_address"
+               class="blue-notes receivingWallet-notes">
+            <p class="fs-15 ff-book c-dark-blue"
+               style="margin: 0;">
+              A receiving wallet has been added to your account from the ICO Portal. To continue adding your wallet, login with your secret
+              key and continue to create trustline. A trustline is used to track the limit for which your account trusts
+              the issuing account and the amount of credit from the issuing account that your account currently holds.
+            </p>
+          </div>
+
+          <div *ngIf="!loggedIn">
+            <div class="login-secret-key-block"
+                 fxLayoutAlign="start center">
+              <input fxFlex
+                     matInput
+                     [type]="hideKey ? 'password' : 'text'"
+                     class="fs-15 c-dark-grey"
+                     placeholder="Secret key(example: SBFQQI5GUFWCPHNBCOEWXWCNDSLY7RBWW4S443BETLRXMWRL3ZKI7GUO)"
+                     [formControl]="inputSecretKeyLogin">
+              <mat-icon matSuffix
+                        style="color: #0EB48D;"
+                        (click)="hideKey = !hideKey">{{hideKey ? 'visibility' : 'visibility_off'}}</mat-icon>
+            </div>
+
+            <div>
+              <div *ngIf="loginNotValid"
+                   class="login-key-missmatch-block"
+                   fxLayoutAlign="start center">
+                <p class="fs-15 c-red"
+                   style="margin: 0;">Please enter a valid secret key and try again.</p>
+              </div>
+
+              <div *ngIf="loginMissmatch"
+                   class="login-key-missmatch-block"
+                   fxLayoutAlign="start center">
+                <p class="fs-15 c-red"
+                   style="margin: 0;">Oops, the private key you entered do not match your public key. Please try again.</p>
+              </div>
+            </div>
+
+            <mat-checkbox [formControl]="loginAgreement">
+              <span class="fs-15 c-black">I accept the Terms of Use and understand the risks associated with cryptocurrencies.</span>
+            </mat-checkbox>
+
+            <div style="margin-bottom: 10px; margin-top: 20px">
+              <button mat-button
+                      (click)="loginWithSecretKey()"
+                      [disabled]="!inputSecretKeyLogin.valid || !loginAgreement.valid || loggedInWithLedger || isloading"
+                      class="active-btn confirm-btn ff-med">Login Now</button>
+            </div>
+          </div>
+
+          <div *ngIf="loggedIn"
+               class="create-trus-line-section">
+            <div class="blue-notes accountStatus-notes">
+              <p *ngIf="isAccountActive"
+                 class="fs-15 ff-book c-dark-blue"
+                 style="margin: 0;">This account is
+                <span class="c-orange">active</span> on the Stellar network. Click on “Create Trustline” to add a trustline between your wallet
+                and Chynge to buy XCLP.</p>
+              <p *ngIf="!isAccountActive"
+                 class="fs-15 ff-book c-dark-blue"
+                 style="margin: 0;">This account is
+                <span class="c-orange">inactive</span> on the Stellar network, we will
+                <span class="c-orange">send 2 XLM</span> to your Wallet. Click on “Create Trustline” to add a trustline between your wallet and
+                Chynge to buy XCLP.</p>
+            </div>
+
+            <mat-checkbox [formControl]="createTrustlineAgreement">
+              <span class="fs-15 c-black">I accept the Terms of Use and understand the risks associated with cryptocurrencies.</span>
+            </mat-checkbox>
+            <div style="margin-bottom: 10px; margin-top: 20px">
+              <button mat-button
+                      (click)="createTrustline()"
+                      [disabled]="!createTrustlineAgreement.valid || isloading"
+                      class="active-btn confirm-btn ff-med">Create Trustline Now</button>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card id="ledger"
+              *ngIf="loginYourKey === true">
+      <mat-card-content>
+        <div>
+          <p class="c-dark-blue fs-18"
+             style="margin-bottom: 20px">Connect using your Ledger Nano S</p>
+          <p class="fs-15 c-black"
+             style="margin: 0;">A very secure way to store your tokens is on a hardware wallet such as Ledger Nano S.</p>
+          <p class="fs-15 c-black"
+             *ngIf="walletTrusted !== true">
+            Firstly, please
+            <a href="https://support.ledgerwallet.com/hc/en-us/articles/115003797194"
+               rel="nofollow noopener"
+               target="_blank">follow Ledger’s guide on setting up your Nano S for Stellar</a> (you might have to update the firmware and software
+            first). If you have done that, great! Just click the login button below and you are set.
+          </p>
+          <br>
+        </div>
+
+        <div *ngIf="walletTrusted === true">
+          <div class="public-key-block"
+               fxLayout="row">
+            <div class="public-key-block-left"
+                 fxLayoutAlign="center center">
+              <p class="fs-15 c-dark-grey"
+                 style="margin: 0;">Public Key</p>
+            </div>
+            <div class="public-key-block-right"
+                 fxLayoutAlign="center center">
+              <p class="fs-15 c-dark-grey"
+                 style="margin: 0;">{{keypair.public}}</p>
+            </div>
+          </div>
+          <div class="green-notes">
+            <p class="fs-15 ff-book"
+               style="margin: 0; color: #0C8F52;">Congratulations! A trustline has been created between your wallet and Chynge. You are ready to participate in
+              the Chynge ICO token sale.</p>
+          </div>
+        </div>
+
+        <div *ngIf="walletTrusted === false">
+          <div *ngIf="currentUser.receiving_wallet_address || loggedInWithLedger"
+               class="public-key-block"
+               fxLayout="row">
+            <div class="public-key-block-left"
+                 fxLayoutAlign="center center">
+              <p class="fs-15 c-dark-grey"
+                 style="margin: 0;">Public Key</p>
+            </div>
+            <div class="public-key-block-right"
+                 fxLayoutAlign="center center">
+              <p class="fs-15 c-dark-grey"
+                 style="margin: 0;">{{keypair.public}}</p>
+            </div>
+          </div>
+
+          <div *ngIf="currentUser.receiving_wallet_address"
+               class="blue-notes receivingWallet-notes">
+            <p class="fs-15 ff-book c-dark-blue"
+               style="margin: 0;">
+              A receiving wallet has been added to your account from the ICO Portal. To continue adding your wallet, login with your secret
+              key and continue to create trustline. A trustline is used to track the limit for which your account trusts
+              the issuing account and the amount of credit from the issuing account that your account currently holds.
+            </p>
+          </div>
+
+          <div *ngIf="!loggedInWithLedger">
+            <div *ngIf="loginLedgerNotValid"
+                 class="login-key-missmatch-block"
+                 fxLayoutAlign="start center">
+              <p class="fs-15 c-red"
+                 style="margin: 0;">Please unlock your device to continue.</p>
+            </div>
+
+            <div *ngIf="loginLedgerMissmatch"
+                 class="login-key-missmatch-block"
+                 fxLayoutAlign="start center">
+              <p class="fs-15 c-red"
+                 style="margin: 0;">Oops, the Ledger do not match your public key. Please try another one.</p>
+            </div>
+
+            <button mat-button
+                    (click)="loginNanoLedger()"
+                    [disabled]="loggedIn"
+                    class="active-btn confirm-btn ff-med"
+                    style="margin-bottom: 10px; margin-top: 20px">Login with Nano Ledger S</button>
+          </div>
+
+
+          <div *ngIf="loggedInWithLedger"
+               class="create-trus-line-section-ledger">
+            <div class="blue-notes accountStatus-notes">
+              <p *ngIf="isAccountActive"
+                 class="fs-15 ff-book c-dark-blue"
+                 style="margin: 0;">This account is
+                <span class="c-orange">active</span> on the Stellar network. Click on “Create Trustline” to add a trustline between your wallet
+                and Chynge to buy XCLP.</p>
+              <p *ngIf="!isAccountActive"
+                 class="fs-15 ff-book c-dark-blue"
+                 style="margin: 0;">This account is
+                <span class="c-orange">inactive</span> on the Stellar network, we will
+                <span class="c-orange">send 2 XLM</span> to your Wallet. Click on “Create Trustline” to add a trustline between your wallet and
+                Chynge to buy XCLP.</p>
+            </div>
+
+            <mat-checkbox [formControl]="createTrustlineAgreementLedger">
+              <span class="fs-15 c-black">I accept the Terms of Use and understand the risks associated with cryptocurrencies.</span>
+            </mat-checkbox>
+            <div style="margin-bottom: 10px; margin-top: 20px">
+              <button mat-button
+                      (click)="createTrustlineLedger()"
+                      [disabled]="!createTrustlineAgreementLedger.valid || isloading"
+                      class="active-btn confirm-btn ff-med">Create Trustline Now</button>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+</div>

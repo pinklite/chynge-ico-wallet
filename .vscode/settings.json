@@ -1,0 +1,39 @@
+{
+  "editor.formatOnSave": true,
+  "editor.detectIndentation": false,
+  "editor.tabSize": 2,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "tslint.enable": true,
+  "tslint.run": "onSave",
+  "tslint.autoFixOnSave": false,
+  "tslint.exclude": "**/node_modules",
+  "tslint.configFile": "tslint.json",
+  "prettier.singleQuote": true,
+  "prettier.typescriptEnable": ["typescript", "typescriptreact"],
+  "prettier.graphqlEnable": ["graphql"],
+  "prettier.cssEnable": ["css", "less", "scss"],
+  "prettier.jsonEnable": ["json"],
+  "prettier.trailingComma": "es5",
+  "prettier.javascriptEnable": ["javascript", "javascriptreact"],
+  "prettier.printWidth": 120,
+  "html.format.wrapAttributes": "force-aligned",
+  "html.validate.styles": true,
+  "emmet.syntaxProfiles": {
+    "typescript": "html"
+  },
+  "emmet.triggerExpansionOnTab": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true
+  },
+  "window.zoomLevel": 0,
+  "workbench.iconTheme": "material-icon-theme",
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "window.menuBarVisibility": "default",
+  "workbench.statusBar.visible": true,
+  "workbench.activityBar.visible": true
+}

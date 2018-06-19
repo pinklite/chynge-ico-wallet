@@ -1,0 +1,125 @@
+.landing {
+  width: 100%;
+  min-height: 100vh;
+  max-height: 100%;
+  background: linear-gradient(180deg, #ffffff 30%, #c5e9ff 100%);
+  background-size: cover;
+}
+
+.logo-img {
+  height: 80px;
+  @media (max-width: 599px) {
+    height: 60px;
+  }
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.com-tag {
+  font-family: GTWalsheim;
+  font-size: 32px;
+  @media (max-width: 599px) {
+    font-size: 24px;
+  }
+  font-weight: 500;
+  color: #333333;
+  line-height: 38px;
+  margin: 0;
+}
+
+.intro {
+  margin-bottom: 20px;
+}
+
+.input {
+  width: 100%;
+  height: 60px;
+  box-sizing: border-box;
+  border: solid 1px #d0d0d0;
+  border-radius: 5px;
+  padding: 10px 10px 10px 20px;
+  margin-bottom: 20px;
+}
+
+.forgot {
+  padding-bottom: 20px;
+  a {
+    color: #fe5413;
+  }
+  a:hover {
+    color: #0eb48d;
+  }
+}
+
+.loading-bar {
+  position: absolute;
+  top: 0;
+}
+
+.example-card {
+  width: 100%;
+}
+
+.form-fields {
+  width: 100%;
+}
+
+.btn-row {
+  width: 100%;
+}
+
+.login-disabled-btn {
+  height: 60px;
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 0 5px 16px 0 #c3c3c3;
+  color: #0ca17e;
+}
+
+.login-btn {
+  height: 60px;
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 0 5px 16px 0 #c3c3c3;
+  transition: all 0.2s ease-in-out;
+  background-color: #0eb48d;
+  color: #ffffff;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+}
+
+.login {
+  background-color: #ffffff;
+  padding: 40px;
+  width: 90vw;
+  max-width: 540px;
+  @media (max-width: 424px) {
+    padding: 25px;
+  }
+  border-radius: 5px;
+}
+
+.title {
+  font-family: GTWalsheimBold;
+  font-size: 24px;
+  color: #ffffff;
+  letter-spacing: 1.2px;
+}
+
+mat-icon {
+  cursor: pointer;
+}
+
+input {
+  height: 100%;
+}
+
+::ng-deep .mat-progress-bar-buffer {
+  background-color: #d1c4e9 !important;
+}
+
+::ng-deep .mat-progress-bar-fill::after {
+  background-color: #0eb48d;
+}

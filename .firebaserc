@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "chynge-ico-wallet",
+    "production": "chynge-ico-wallet-production"
+  }
+}

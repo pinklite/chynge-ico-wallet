@@ -1,0 +1,17 @@
+<div fxFlex
+     fxLayout="column"
+     fxLayoutAlign="center center"
+     class="bg">
+  <div *ngIf="kycStatus && kycStatus !== 'Approved'"
+       class="example-card">
+    <div class="logo"
+         fxLayout="column"
+         fxLayoutAlign="center center">
+      <h1 class="title"
+          style="font-size:60px; padding:40px;">YOU MUST PASS THE KYC</h1>
+      <button mat-button
+              [ngClass]="'back-btn'"
+              [routerLink]="['/login']">BACK</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="keypair-confirmation">
+  <p class="c-dark-blue fs-18"
+     style="margin: 0px;">Generate Keypair</p>
+  <p class="fs-17 c-black">
+    Chynge will generate a keypair that will be automatically applied as your receiving wallet in your chynge.net ICO portal.
+    <span class="c-orange">
+      Keep in mind that once your wallet is set, you will not be able to change it in your chynge.net ICO portal.
+    </span>
+  </p>
+
+  <div fxLayout="row"
+       fxLayoutAlign="start start"
+       fxLayoutGap="20px"
+       fxLayout.xs="column"
+       fxLayoutAlign.xs="center center"
+       fxLayoutGap="10px">
+    <button mat-button
+            [mat-dialog-close]="true"
+            class="confirm-btn">Generate Keypair</button>
+    <button mat-button
+            mat-dialog-close
+            class="cancel-btn">No, I changed my mind.</button>
+  </div>
+</div>

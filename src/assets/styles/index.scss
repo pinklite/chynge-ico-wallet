@@ -1,0 +1,32 @@
+@import 'utils/index.scss';
+@import 'containers.scss';
+@import 'typography.scss';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.mat-drawer-container {
+  overflow: hidden !important;
+  @media screen and (max-width: 599px) {
+    // overflow: visible !important;
+  }
+}
+
+.mat-input-container.app-input-no-underline .mat-input-underline {
+  display: none;
+}
+
+.mat-checkbox-label {
+  white-space: normal;
+}
+
+.mat-checkbox {
+  height: 100%;
+  max-height: 100%;
+}
+
+html,
+body {
+  height: 100%;
+  max-height: 100%;
+  width: 100%;
+  background-color: $smoke;
+}

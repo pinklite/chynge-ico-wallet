@@ -1,0 +1,25 @@
+<div class="trustline-confirmation">
+  <p class="c-dark-blue fs-18"
+     style="margin: 0px;">Create Trustline</p>
+  <p class="fs-15 c-black">
+    In order to buy XCLP, you need to enable a trustline between your wallet and Chynge. By clicking on ‘Add Trustline Now’,
+    you are creating a trustline with Chynge.
+    <span class="c-orange">
+      Once you have set your receiving wallet, you are unable to change it in the chynge.net ICO portal.
+    </span>
+  </p>
+
+  <div fxLayout="row"
+       fxLayoutAlign="start start"
+       fxLayoutGap="20px"
+       fxLayout.xs="column"
+       fxLayoutAlign.xs="center center"
+       fxLayoutGap="10px">
+    <button mat-button
+            [mat-dialog-close]="true"
+            class="confirm-btn">Add Trustline Now</button>
+    <button mat-button
+            mat-dialog-close
+            class="cancel-btn">No, I changed my mind.</button>
+  </div>
+</div>

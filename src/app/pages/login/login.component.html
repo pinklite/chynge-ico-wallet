@@ -1,0 +1,61 @@
+<div fxLayout="column"
+     fxLayoutAlign="center center"
+     class="landing">
+  <mat-progress-bar *ngIf="isloading"
+                    mode="indeterminate"
+                    class="loading-bar"></mat-progress-bar>
+  <div class="example-card"
+       fxLayout="column"
+       fxLayoutAlign="start center">
+    <div class="intro"
+         fxLayout="column"
+         fxLayoutAlign="center center">
+      <a href='/'>
+        <img class="logo-img"
+             src="../../../assets/icons/blue-logo.png">
+      </a>
+      <p class="com-tag">Sign in to Chynge Wallet</p>
+    </div>
+
+    <div class="login"
+         fxLayout="column">
+      <form *ngIf="!showConfirmForm"
+            (ngSubmit)="onSignIn()"
+            [formGroup]="form"
+            class="form-fields">
+        <mat-card-content fxLayout="column"
+                          fxLayoutAlign="start start">
+          <mat-form-field class="input"
+                          [class.app-input-no-underline]="!showUnderline">
+            <input matInput
+                   placeholder="type your email address here"
+                   formControlName="email"
+                   autofocus>
+          </mat-form-field>
+          <mat-form-field class="input"
+                          [class.app-input-no-underline]="!showUnderline">
+            <input matInput
+                   placeholder="Enter your password"
+                   formControlName="password"
+                   [type]="hidePassword ? 'password' : 'text'">
+            <mat-icon matSuffix
+                      style="color: #333333 !important"
+                      (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+          </mat-form-field>
+          <div class="forgot">
+            <a [routerLink]="['/forgot-password']"> Forgot Password ?</a>
+          </div>
+
+          <div class="btn-row">
+            <button mat-button
+                    fxFlex="100"
+                    type="submit"
+                    [disabled]="isloading || !form.valid"
+                    [ngClass]="!form.valid ? 'login-disabled-btn' : 'login-btn'">SIGN IN</button>
+          </div>
+        </mat-card-content>
+      </form>
+    </div>
+  </div>
+
+</div>
