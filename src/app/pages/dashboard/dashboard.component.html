@@ -30,13 +30,16 @@
            fxLayoutAlign="center center"
            fxLayoutGap="15px"
            class="button-row">
-        <button mat-button
-                (click)="loginYourKey = true; automatically = false"
-                [ngClass]="!loginYourKey ? 'nonActive-btn' : 'active-btn'">Login with your key</button>
+
 
         <button mat-button
                 (click)="loginYourKey = false; automatically = true"
                 [ngClass]="!automatically ? 'nonActive-btn' : 'active-btn'">Automatically generate keypair</button>
+
+        <button mat-button
+                (click)="loginYourKey = true; automatically = false"
+                [ngClass]="!loginYourKey ? 'nonActive-btn' : 'active-btn'">Login with your key</button>
+
       </div>
     </div>
 

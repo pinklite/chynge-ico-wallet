@@ -74,8 +74,8 @@ export class DashboardComponent implements OnInit {
 
     this.isloading = false;
     this.hideKey = false;
-    this.loginYourKey = true;
-    this.automatically = false;
+    this.loginYourKey = false;
+    this.automatically = true;
     this.loggedInWithLedger = false;
     this.loggedIn = false;
     this.loginMissmatch = false;
