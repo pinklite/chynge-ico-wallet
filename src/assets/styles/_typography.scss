@@ -1,19 +1,18 @@
 @font-face {
-  font-family: GTWalsheim;
-  src: url('/assets/fonts/gt-walsheim-web.ttf');
+  font-family: AvenirBold;
+  src: url('/assets/fonts/avenir-roman-bold.ttf');
 }
+
 @font-face {
-  font-family: GTWalsheimLight;
-  src: url('/assets/fonts/gt-walsheim-light-web.ttf');
+  font-family: AvenirNext;
+  src: url('/assets/fonts/avenir-next-regular.ttf');
 }
+
 @font-face {
-  font-family: GTWalsheimMedium;
-  src: url('/assets/fonts/gt-walsheim-medium-web.ttf');
+  font-family: AvenirNextThin;
+  src: url('/assets/fonts/avenir-next-thin.ttf');
 }
-@font-face {
-  font-family: GTWalsheimBold;
-  src: url('/assets/fonts/gt-walsheim-bold-web.ttf');
-}
+
 button,
 span,
 pre,
@@ -29,35 +28,41 @@ h2,
 h3,
 h4,
 h5,
-h6 {
-  font-family: 'GTWalsheim';
+h6,
+li {
+  font-family: 'AvenirNext';
   text-decoration: none;
   font-weight: normal;
 }
 
+li {
+  font-size: 15px;
+  line-height: 25px;
+}
 a {
   cursor: pointer;
 }
 
 .ff-bold {
-  font-family: 'GTWalsheimBold';
+  font-family: 'AvenirBold';
 }
 
 .ff-book {
-  font-family: 'GTWalsheimLight';
+  font-family: 'AvenirNextThin';
 }
 
 .ff-med {
-  font-family: 'GTWalsheimMedium';
+  font-family: 'AvenirBold';
 }
 
 .ff-reg {
-  font-family: 'GTWalsheim';
+  font-family: 'AvenirNext';
 }
 
 .fs-40 {
   font-size: 40px;
   line-height: 50px;
+  font-weight: 900;
 
   @media (max-width: 400px) {
     font-size: 30px;
@@ -68,11 +73,13 @@ a {
 .fs-24 {
   font-size: 24px;
   line-height: 30px;
+  font-weight: 900;
 }
 
 .fs-20 {
   font-size: 20px;
   line-height: 26px;
+  font-weight: 900;
   @media (max-width: 400px) {
     font-size: 15px;
     line-height: 20px;
@@ -81,27 +88,28 @@ a {
 
 .fs-18 {
   font-size: 18px;
-  line-height: 25px;
+  line-height: 29px;
+  font-weight: 800;
 }
 
 .fs-17 {
   font-size: 17px;
-  line-height: 25px;
+  line-height: 27px;
 }
 
 .fs-15 {
   font-size: 15px;
-  line-height: 18px;
+  line-height: 25px;
 }
 
 .fs-14 {
   font-size: 14px;
-  line-height: 18px;
+  line-height: 23px;
 }
 
 .fs-13 {
   font-size: 13px;
-  line-height: 18px;
+  line-height: 20px;
 }
 
 .fs-10 {

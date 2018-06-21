@@ -20,6 +20,9 @@
         <img class="logo-img"
              src="../../../assets/icons/blue-logo.png">
       </a>
+
+
+
       <p class="com-tag">Choose your preferred access</p>
 
       <div fxLayout="row"
@@ -41,23 +44,18 @@
               fxFlex="100"
               *ngIf="loginYourKey === true">
       <mat-card-content fxLayout="column">
-        <p class="c-red2 fs-18"
-           style="margin: 0; margin-bottom: 15px;">
+        <h3 class="ff-bold ">
           Security Notes
-        </p>
-        <p class="fs-15 c-black"
-           style="line-height: 26px; margin: 0px;">
-          • Check the url to make sure you are on the correct website.
-        </p>
-        <p class="fs-15 c-black"
-           style="line-height: 26px; margin: 0px;">
-          • Chynge does not save your secret key. It is stored on your browser and will be deleted once your session ends i.e when
-          you close or refresh the browser.
-        </p>
-        <p class="fs-15 c-black"
-           style="line-height: 26px; margin: 0px;">
-          • For extra security, you can build from source or download from GitHub and verify the hash.
-        </p>
+        </h3>
+        <ul>
+          <li>Check the url to make sure you are on the correct website.
+            <strong>https://wallet.chynge.net</strong>
+          </li>
+          <li>Chynge
+            <strong>does not</strong> save your secret key. It is stored on your browser and will be deleted once your session ends
+            i.e when you close or refresh the browser.</li>
+          <li>For extra security, you can build from source or download from GitHub and verify the hash.</li>
+        </ul>
       </mat-card-content>
     </mat-card>
 
@@ -65,12 +63,10 @@
               fxFlex="100"
               *ngIf="automatically === true">
       <mat-card-content fxLayout="column">
-        <p class="c-red2 fs-18"
-           style="margin: 0">
+        <h3 class="ff-bold ">
           Account Generation Security Notes
-        </p>
-        <p class="fs-15 c-black"
-           style="line-height: 26px">
+        </h3>
+        <p class="fs-15">
           The key is generated usng entropy from TweetNaCl’s randomByte function, which in more browsers uses getRandomValues from
           the Web Cryptography API. However, using a secure random number generation does not protect you from a compromised
           computer. Take great care to make sure your computer is secure. Do not run this on a computer you do not trust.</p>
@@ -86,16 +82,17 @@
           To participate in the token sale, you will need a Stellar-compliant wallet. Chynge can generate a keypair for you, which
           consists of two parts:
         </p>
-        <p class="fs-15 c-black">
-          <span class="c-orange">• Public Key: </span>
-          The public key is used to identify the account and is used to receive funds .
-        </p>
-        <p class="fs-15 c-black">
-          <span class="c-orange">• Secret Key: </span>
-          The secret key is like a password. It is used to access your account and make transactions. Keep this safe and secure as
-          if you lose the key, you will not be able to access your funds and will not be able to recover your key. Contrary,
-          anyone with your secret key will have full access to the account and funds.
-        </p>
+        <ul>
+          <li>
+            <strong class="c-orange">Public Key: </strong>
+            The public key is used to identify the account and is used to receive funds.</li>
+          <li>
+            <strong class="c-orange">Secret Key: </strong>
+            The secret key is like a password. It is used to access your account and make transactions. Keep this safe and secure as
+            if you lose the key, you will not be able to access your funds and will not be able to recover your key. Contrary,
+            anyone with your secret key will have full access to the account and funds.
+          </li>
+        </ul>
         <p class="fs-15 c-black"> Before generating a keypair, make sure you have read and agreed on all terms stated below.</p>
         <br/>
 
@@ -237,7 +234,7 @@
                  class="fs-15 ff-book c-dark-blue"
                  style="margin: 0;">This account is
                 <span class="c-orange">inactive</span> on the Stellar network, we will
-                <span class="c-orange">send 2 XLM</span> to your Wallet. Click on “Create Trustline” to add a trustline between your wallet and
+                <span class="c-orange">send 2.5 XLM</span> to your Wallet. Click on “Create Trustline” to add a trustline between your wallet and
                 Chynge to buy XCLP.</p>
             </div>
 
@@ -260,7 +257,7 @@
       <mat-card-content>
         <div>
           <p class="c-dark-blue fs-18"
-             style="margin-bottom: 20px">Connect using your Ledger Nano S</p>
+             style="margin-bottom: 20px;margin-top:0px;">Connect using your Ledger Nano S</p>
           <p class="fs-15 c-black"
              style="margin: 0;">A very secure way to store your tokens is on a hardware wallet such as Ledger Nano S.</p>
           <p class="fs-15 c-black"
@@ -280,7 +277,7 @@
             <div class="public-key-block-left"
                  fxLayoutAlign="center center">
               <p class="fs-15 c-dark-grey"
-                 style="margin: 0;">Public Key</p>
+                 style="margin: 0;font-weight: bold;">Public Key</p>
             </div>
             <div class="public-key-block-right"
                  fxLayoutAlign="center center">
@@ -302,7 +299,7 @@
             <div class="public-key-block-left"
                  fxLayoutAlign="center center">
               <p class="fs-15 c-dark-grey"
-                 style="margin: 0;">Public Key</p>
+                 style="margin: 0;font-weight: bold;">Public Key</p>
             </div>
             <div class="public-key-block-right"
                  fxLayoutAlign="center center">
@@ -356,7 +353,7 @@
                  class="fs-15 ff-book c-dark-blue"
                  style="margin: 0;">This account is
                 <span class="c-orange">inactive</span> on the Stellar network, we will
-                <span class="c-orange">send 2 XLM</span> to your Wallet. Click on “Create Trustline” to add a trustline between your wallet and
+                <span class="c-orange">send 2.5 XLM</span> to your Wallet. Click on “Create Trustline” to add a trustline between your wallet and
                 Chynge to buy XCLP.</p>
             </div>
 
