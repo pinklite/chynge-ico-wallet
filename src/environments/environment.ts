@@ -12,7 +12,7 @@ export const environment = {
   identityPoolId: 'us-east-1:55f6747b-e647-4f0b-811e-22a7259ee28c',
 
   serverUrl: 'https://horizon-testnet.stellar.org',
-  assetCode: 'XCLP',
+  assetCode: 'CLPX',
   issuer: 'GAVTVJI72NZHEDWAYCTRCT2PJDISIXCG6NYAGDIBLFNIQ4ZHCAOGI76C',
 
   tableUser: 'dev-user',

@@ -7,7 +7,7 @@ export const environment = {
   identityPoolId: 'us-east-1:55423759-db80-4557-b303-2258e4a325cf',
 
   serverUrl: 'https://horizon.chynge.net',
-  assetCode: 'XCLP',
+  assetCode: 'CLPX',
   issuer: 'GCGPROUME4EFN6CRARPLIR67JV65JWKQ5Y6KYWTDNHSE7SV64CWJQQXQ',
 
   tableUser: 'prod-user',

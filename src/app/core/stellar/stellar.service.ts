@@ -22,7 +22,7 @@ export class StellarService {
 
   createTrust(receivingAccountSecretKey: string): Observable<{}> {
     const receivingKeys = StellarSdk.Keypair.fromSecret(receivingAccountSecretKey);
-    const XCLP = new StellarSdk.Asset(environment.assetCode, environment.issuer);
+    const CLPX = new StellarSdk.Asset(environment.assetCode, environment.issuer);
 
     return Observable.fromPromise(
       this.server
@@ -34,7 +34,7 @@ export class StellarService {
           const transaction = new StellarSdk.TransactionBuilder(receiver)
             .addOperation(
               StellarSdk.Operation.changeTrust({
-                asset: XCLP,
+                asset: CLPX,
               })
             )
             .build();
@@ -53,7 +53,7 @@ export class StellarService {
   }
 
   createTrustForLedger(publicKey: string): Observable<{}> {
-    const XCLP = new StellarSdk.Asset(environment.assetCode, environment.issuer);
+    const CLPX = new StellarSdk.Asset(environment.assetCode, environment.issuer);
 
     return Observable.fromPromise(
       this.server
@@ -65,7 +65,7 @@ export class StellarService {
           const transaction = new StellarSdk.TransactionBuilder(receiver)
             .addOperation(
               StellarSdk.Operation.changeTrust({
-                asset: XCLP,
+                asset: CLPX,
               })
             )
             .build();
